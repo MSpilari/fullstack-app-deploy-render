@@ -1,0 +1,39 @@
+services:
+  postgres-db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=database
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=1234
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  
+  spring-app:
+    build:
+      context: "./backend"
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/database
+      - CORS_ALLOWED_ORIGINS=http://localhost:9090,http://react-app:9090
+    depends_on:
+      - postgres-db
+
+  react-app:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_GET_MESSAGES_URL=http://localhost:8080/allmessages
+        - VITE_POST_MESSAGES_URL=http://localhost:8080/sendmessage
+    ports:
+      - "9090:9090"
+    depends_on:
+      - spring-app
+
+volumes:
+  postgres_data:
+  
