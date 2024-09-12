@@ -1,6 +1,7 @@
 package com.spring.render.services;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,11 @@ public class MessageService {
         var newMessage = new MessageModel(message);
 
         return messageRepository.save(newMessage);
+    }
+
+    public void deleteMessage(String messageId) {
+
+        messageRepository.deleteById(UUID.fromString(messageId));
     }
 
 }
