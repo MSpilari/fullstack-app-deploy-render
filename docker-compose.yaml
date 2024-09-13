@@ -29,6 +29,7 @@ services:
       args:
         - VITE_GET_MESSAGES_URL=http://localhost:8080/allmessages
         - VITE_POST_MESSAGES_URL=http://localhost:8080/sendmessage
+        - VITE_DELETE_MESSAGES_URL=http://localhost:8080/deletemessage
     ports:
       - "9090:9090"
     depends_on:
