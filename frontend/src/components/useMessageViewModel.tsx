@@ -8,6 +8,7 @@ const useMessageViewModel = () => {
   const [error, setError] = useState<string | null>(null);
   const getMessagesUrl = import.meta.env.VITE_GET_MESSAGES_URL;
   const postMessagesUrl = import.meta.env.VITE_POST_MESSAGES_URL;
+  const deleteMessageUrl = import.meta.env.VITE_DELETE_MESSAGES_URL;
 
   const loadMessages = async () => {
     setLoading(true);
@@ -47,6 +48,11 @@ const useMessageViewModel = () => {
     }
   };
 
+  const deleteMessage = async (id: String) => {
+    await fetch(`${deleteMessageUrl}/${id}`, { method: "DELETE" });
+    await loadMessages();
+  };
+
   useEffect(() => {
     loadMessages();
   }, []);
@@ -56,6 +62,7 @@ const useMessageViewModel = () => {
     userMessage,
     setUserMessage,
     submitMessage,
+    deleteMessage,
     loading,
     error,
   };
