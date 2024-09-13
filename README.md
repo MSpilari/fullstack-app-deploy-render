@@ -105,7 +105,7 @@ The frontend will be accessible at `http://localhost:5173`.
 
 ```bash
 cd backend
-mvn spring-boot:run
+./mvnw spring-boot:run
 ```
 
 The backend will be accessible at `http://localhost:8080`.
