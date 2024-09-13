@@ -5,6 +5,7 @@ WORKDIR /app
 # Passar variáveis de ambiente como argumentos
 ARG VITE_GET_MESSAGES_URL
 ARG VITE_POST_MESSAGES_URL
+ARG VITE_DELETE_MESSAGES_URL
 
 COPY ./package*.json ./
 
