@@ -8,6 +8,7 @@ function App() {
     messages,
     setUserMessage,
     submitMessage,
+    deleteMessage,
     userMessage,
     error,
     loading,
@@ -15,7 +16,11 @@ function App() {
   return (
     <>
       <main className="main">
-        {loading ? <p>Loading...</p> : <MessageList messages={messages} />}
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <MessageList messages={messages} eraseFunct={deleteMessage} />
+        )}
         {error && <p>{error}</p>}
         <MessageForm
           writingMessage={setUserMessage}
