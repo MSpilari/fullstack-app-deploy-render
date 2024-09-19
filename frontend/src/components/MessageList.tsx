@@ -1,12 +1,6 @@
-import { MessageDto } from "../dto/MessageDto";
+import { MessageListDto } from "../dto/MessageListDto";
 
-const MessageList = ({
-  messages,
-  eraseFunct,
-}: {
-  messages: MessageDto[];
-  eraseFunct: (id: String) => void;
-}) => {
+const MessageList = ({ messages, eraseFunct }: MessageListDto) => {
   return (
     <section className="messageSection">
       <h1>Messages</h1>
